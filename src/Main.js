@@ -13,13 +13,13 @@ state = { loggedIn:null };
 
 componentWillMount(){
   firebase.initializeApp({
-
-    apiKey: "AIzaSyCHch4CrwyEoqw2S8tDVsubcTJ93Z5vXgc",
-    authDomain: "kimlikdogrulama-b75e9.firebaseapp.com",
-    databaseURL: "https://kimlikdogrulama-b75e9.firebaseio.com",
-    projectId: "kimlikdogrulama-b75e9",
-    storageBucket: "kimlikdogrulama-b75e9.appspot.com",
-    messagingSenderId: "208643488561"
+// you should change.
+    apiKey: "-c",
+    authDomain: "-.firebaseapp.com",
+    databaseURL: "-.firebaseio.com",
+    projectId: "--b75e9",
+    storageBucket: "-.appspot.com",
+    messagingSenderId: "-"
 
   });
 
