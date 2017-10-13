@@ -1,0 +1,227 @@
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require('react');
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require('./../node_modules/react-transform-hmr/lib/index.js');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _jsxFileName = '/Users/baran/Projects/kimlikdogrulama/src/LoginForm.js';
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _reactNative = require('react-native');
+
+var _firebase = require('firebase');
+
+var _firebase2 = _interopRequireDefault(_firebase);
+
+var _Button = require('./ortak/Button');
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _Card = require('./ortak/Card');
+
+var _Card2 = _interopRequireDefault(_Card);
+
+var _CardSection = require('./ortak/CardSection');
+
+var _CardSection2 = _interopRequireDefault(_CardSection);
+
+var _Spinner = require('./ortak/Spinner');
+
+var _Spinner2 = _interopRequireDefault(_Spinner);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  LoginForm: {
+    displayName: 'LoginForm'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: '/Users/baran/Projects/kimlikdogrulama/src/LoginForm.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var LoginForm = _wrapComponent('LoginForm')(function (_Component) {
+  _inherits(LoginForm, _Component);
+
+  function LoginForm() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, LoginForm);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = LoginForm.__proto__ || Object.getPrototypeOf(LoginForm)).call.apply(_ref, [this].concat(args))), _this), _this.state = { email: '', password: '', loading: false }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(LoginForm, [{
+    key: 'clickLogin',
+    value: function clickLogin() {
+      var _this2 = this;
+
+      this.setState({ loading: true });
+      var _state = this.state,
+          email = _state.email,
+          password = _state.password;
+
+      if (email === '' || password === '') {
+        this.setState({ loading: false });
+
+        _reactNative.Alert.alert('Mesaj', 'Kullanıcı adı veya şifre girmediniz.', [{ text: 'Tamam', onPress: function onPress() {
+            return null;
+          } }]);
+      } else {
+        _firebase2.default.auth().signInWithEmailAndPassword(email, password).then(this.loginSucces.bind(this)).catch(function () {
+          _firebase2.default.auth().createUserWithEmailAndPassword(email, password).then(_this2.loginSucces.bind(_this2)).catch(_this2.loginFail.bind(_this2));
+        });
+      }
+    }
+  }, {
+    key: 'loginSucces',
+    value: function loginSucces() {
+      console.log('Başarılı');
+      this.setState({ loading: false });
+    }
+  }, {
+    key: 'loginFail',
+    value: function loginFail() {
+      console.log('Başarısız');
+      this.setState({ loading: false });
+      _reactNative.Alert.alert('Mesaj', 'Kullanıcı adı veya şifreniz hatalı', [{ text: 'Tamam', onPress: function onPress() {
+          return null;
+        } }]);
+    }
+  }, {
+    key: 'renderButton',
+    value: function renderButton() {
+      if (!this.state.loading) {
+        return _react3.default.createElement(
+          _Button2.default,
+          { onPress: this.clickLogin.bind(this), __source: {
+              fileName: _jsxFileName,
+              lineNumber: 54
+            }
+          },
+          ' G\u0130R\u0130\u015E '
+        );
+      }
+      return _react3.default.createElement(_Spinner2.default, { size: 'small', __source: {
+          fileName: _jsxFileName,
+          lineNumber: 56
+        }
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var inputStyle = styles.inputStyle;
+
+      return _react3.default.createElement(
+        _Card2.default,
+        {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 65
+          }
+        },
+        _react3.default.createElement(
+          _CardSection2.default,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 66
+            }
+          },
+          _react3.default.createElement(_reactNative.TextInput, {
+            placeholder: 'E-mail',
+            style: inputStyle,
+            value: this.state.email,
+            onChangeText: function onChangeText(email) {
+              return _this3.setState({ email: email });
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 67
+            }
+          })
+        ),
+        _react3.default.createElement(
+          _CardSection2.default,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 75
+            }
+          },
+          _react3.default.createElement(_reactNative.TextInput, {
+            secureTextEntry: true,
+            placeholder: '\u015Eifre',
+            style: inputStyle,
+            value: this.state.password,
+            onChangeText: function onChangeText(password) {
+              return _this3.setState({ password: password });
+            },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 76
+            }
+          })
+        ),
+        _react3.default.createElement(
+          _CardSection2.default,
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 85
+            }
+          },
+          this.renderButton()
+        )
+      );
+    }
+  }]);
+
+  return LoginForm;
+}(_react2.Component));
+
+var styles = {
+  inputStyle: {
+    color: '#000',
+    paddingRight: 5,
+    paddingLeft: 5,
+    fontSize: 18,
+    lineHeight: 23,
+    flex: 2
+  }
+
+};
+
+exports.default = LoginForm;
